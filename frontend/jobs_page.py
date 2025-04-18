@@ -13,7 +13,8 @@ import time
 load_dotenv()
 
 
-API_URL = "http://localhost:8000"
+API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
+# API_URL = "http://localhost:8000"
 
 # Page configuration
 st.set_page_config(
