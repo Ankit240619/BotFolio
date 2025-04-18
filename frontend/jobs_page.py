@@ -12,7 +12,6 @@ import time
 # Load environment variables
 load_dotenv()
 
-
 API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
 # API_URL = "http://localhost:8000"
 

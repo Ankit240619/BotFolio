@@ -55,15 +55,7 @@ def qa_page():
         status = display_df[display_df["DAG_RUN_ID"] == selected_run]["STATUS"].iloc[0]
         st.markdown(f"Status: {display_df[display_df['DAG_RUN_ID'] == selected_run]['STATUS_DISPLAY'].iloc[0]}", unsafe_allow_html=True)
         
-        # Display a refresh button for checking status
-        # if st.button("Refresh Status"):
-        #     current_status = fetch_pipeline_status(selected_run)
-        #     if current_status:
-        #         status = current_status
-        #         st.markdown(f"Updated Status: <span class='pipeline-status-{status.lower()}'>{status.upper()}</span>", unsafe_allow_html=True)
-        #         # Rerun to use the new status
-        #         st.rerun()
-        
+     
         # If status is success, show the QA form
         if status.lower() == "success":
             # Check if we have already completed the QA session and have a report

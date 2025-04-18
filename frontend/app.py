@@ -1422,7 +1422,6 @@ def main_app():
         qa_page()
  
 
-
 # Main app logic
 def main():
     """Main entry point for the application"""
