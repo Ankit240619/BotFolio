@@ -8,8 +8,8 @@ import os
 import json
 import time
 
-# API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
-API_URL = "http://127.0.0.1:8000"
+API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
+# API_URL = "http://127.0.0.1:8000"
 
 # QA Pipeline Status Page
 def qa_page():
@@ -19,7 +19,7 @@ def qa_page():
     # Fetch pipeline runs
     with st.spinner("Loading interview preparation sessions..."):
         response = requests.get(f'{API_URL}/pipeline_status', params={"user_email": st.session_state.user_email}).json()
-        st.write(response)
+        # st.write(response)
     if 'dag_runs' in response:
         pipeline_runs = response['dag_runs']
     
@@ -55,15 +55,7 @@ def qa_page():
         status = display_df[display_df["DAG_RUN_ID"] == selected_run]["STATUS"].iloc[0]
         st.markdown(f"Status: {display_df[display_df['DAG_RUN_ID'] == selected_run]['STATUS_DISPLAY'].iloc[0]}", unsafe_allow_html=True)
         
-        # Display a refresh button for checking status
-        # if st.button("Refresh Status"):
-        #     current_status = fetch_pipeline_status(selected_run)
-        #     if current_status:
-        #         status = current_status
-        #         st.markdown(f"Updated Status: <span class='pipeline-status-{status.lower()}'>{status.upper()}</span>", unsafe_allow_html=True)
-        #         # Rerun to use the new status
-        #         st.rerun()
-        
+     
         # If status is success, show the QA form
         if status.lower() == "success":
             # Check if we have already completed the QA session and have a report
@@ -172,15 +164,15 @@ def display_qa_form(questions, dag_run_id):
                 {"id": int(q_id), "user_answer": answer} 
                 for q_id, answer in st.session_state.qa_answers.items()
             ]
-            st.write(formatted_answers)
+            # st.write(formatted_answers)
             st.session_state.formatted_answers = formatted_answers
         else:
             st.warning("Please answer at least one question before submitting.")
 
         if 'formatted_answers' in st.session_state:
             with st.spinner("Submitting your answers..."):
-                response = requests.post(f"{API_URL}/qa-validation", json={'answers': st.session_state.formatted_answers, 'user_email': st.session_state.user_email, 'dag_run_id': dag_run_id}).json()
-                st.write(response)
+                response = requests.post(f"{API_URL}/qa-validation", json={'answers': st.session_state.formatted_answers, 'user_email': st.session_state.user_name, 'dag_run_id': dag_run_id}).json()
+                # st.write(response)
                 if 'markdown' in response:
                     st.markdown(response['markdown'])
                 else:

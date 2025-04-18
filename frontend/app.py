@@ -20,8 +20,8 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-# API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
-API_URL = "http://127.0.0.1:8000"
+API_URL ="https://botfolio-apis-548112246073.us-central1.run.app"
+# API_URL = "http://127.0.0.1:8000"
 
 # Set up the correct path to your images
 PREVIEW_DIR = Path(__file__).parent.parent / "static" / "images"
@@ -737,6 +737,7 @@ def deploy_existing_user_portfolio():
             
             # Display initial message
             st.info("Deployment started! This will take approximately 40 seconds...")
+          
             st.rerun()
         
         # Add a button to go back to editing
@@ -1394,9 +1395,9 @@ def run_jobs_page():
                                     st.info("Go to the QA tab to view your interview questions.")
                                     
                                     # Simple button to go to QA tab
-                                    if st.button("Go to QA Tab", key=f"goto_qa_{job_key}"):
-                                        st.session_state.page = "qa"
-                                        st.experimental_rerun()
+                                    # if st.button("Go to QA Tab", key=f"goto_qa_{job_key}"):
+                                    st.session_state.page = "qa"
+                                    # st.rerun()
                                 else:
                                     st.error("Failed to set up interview preparation. Please try again.")
                         
@@ -1419,7 +1420,6 @@ def main_app():
         run_jobs_page()  # Run the jobs page functionality
     elif current_page == "qa":
         qa_page()
- 
  
 
 # Main app logic
