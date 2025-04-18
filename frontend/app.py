@@ -325,7 +325,7 @@ def display_theme_selector(themes):
                 if not image_found:
                     st.session_state[image_path_key] = f"https://via.placeholder.com/600x400?text={theme_name}+Preview"
 
-            col.image(st.session_state[image_path_key], 
+            col.image("https://data-for-all.s3.us-east-1.amazonaws.com/uploads/theme_4_preview.jpg", 
                       caption=f"Preview of {theme_name}", 
                       use_container_width=True)
             
