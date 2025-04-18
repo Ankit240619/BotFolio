@@ -312,20 +312,12 @@ def display_theme_selector(themes):
             st.markdown(f"*{themes[theme_name]['description']}*")
 
             # Preview image - cache check to avoid file I/O on every rerun
-            image_path_key = f"image_path_{theme_name}"
-            if image_path_key not in st.session_state:
-                image_found = False
-                for ext in ['png', 'jpg', 'jpeg']:
-                    preview_path = PREVIEW_DIR / f"{theme_name.lower().replace(' ', '_')}_preview.{ext}"
-                    if preview_path.exists():
-                        st.session_state[image_path_key] = str(preview_path)
-                        image_found = True
-                        break
-                
+            image_path_key = themes[theme_name]['ref']
+            st.session_state[image_path_key] = image_path_key
                 if not image_found:
                     st.session_state[image_path_key] = f"https://via.placeholder.com/600x400?text={theme_name}+Preview"
 
-            col.image("https://data-for-all.s3.us-east-1.amazonaws.com/uploads/theme_4_preview.jpg", 
+            col.image(st.session_state[image_path_key], 
                       caption=f"Preview of {theme_name}", 
                       use_container_width=True)
             
