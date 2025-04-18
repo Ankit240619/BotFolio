@@ -314,13 +314,9 @@ def display_theme_selector(themes):
             # Preview image - cache check to avoid file I/O on every rerun
             image_path_key = themes[theme_name]['ref']
             st.session_state[image_path_key] = image_path_key
-                if not image_found:
-                    st.session_state[image_path_key] = f"https://via.placeholder.com/600x400?text={theme_name}+Preview"
-
             col.image(st.session_state[image_path_key], 
                       caption=f"Preview of {theme_name}", 
                       use_container_width=True)
-            
             # Theme selection button
             if col.button(f"Select {theme_name}", key=f"select_button_{theme_name}"):
                 st.session_state.selected_theme = theme_name
