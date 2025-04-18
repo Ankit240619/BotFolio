@@ -1,7 +1,7 @@
 THEMES = {
     "Theme 1": {
         "description": "Modern dark blue theme with teal accents. Professional design with card-based layout.",
-        "ref":"static/images/theme_1_preview.jpg"
+        "ref":"frontend/static/images/theme_1_preview.jpg"
     },
     "Theme 2": {
         "description": "Vibrant purple/pink gradient design. Creative layout with timeline experience section.",
